@@ -53,7 +53,7 @@
       autoplay=""
       enable-pan
       enviornment-image=""
-      src="assets/superCars/lamborgini.glb"
+      src="Predators.glb"
       preload
       ar
       ar-modes="webxr scene-viewer quick-look"
@@ -63,7 +63,7 @@
       style=" height: 100vh;width: 100vw;"> 
 
       
-      <div class="controls">
+      <div class="controls" style="width: 0;">
         <div style="text-size: 24sp">
           Animations:
           <select id="variant"></select>
@@ -71,14 +71,14 @@
       </div>
 
      <div class="d-flex" style="width: 0;">
-      <button id="pause"class="btn btn-alert"><i class="fa fa-pause-circle-o"></i></button>
-      <button id="play" class="btn btn-alert" style="display: none">
+      <button id="pause"class="btn btn-outline-alert border" style="margin: 5px;"><i class="fa fa-pause-circle-o"></i></button>
+      <button id="play" class="btn btn-outline-alert border" style="display: none; margin:5px;">
        <i class="fa fa-play"></i>
       </button>
 
       <button
       id="setting1"
-        class="btn btn-alert"
+        class="btn btn-alert border"
         style="margin: 5px"
         data-toggle="collapse"
         data-target="#demo"
@@ -87,7 +87,7 @@
       </button>
       <button
        id="setting2"
-        class="btn btn-alert"
+        class="btn btn-alert border"
         style="margin: 5px"
         data-toggle="collapse"
         data-target="#demo2"
@@ -148,9 +148,9 @@
          
          <div id="demo2" class="collapse" style="width: 0;">
         <div class="controls2 d-flex mt-2" ,="" id="color-controls">
-          <button class="btn btn-danger" data-color="1,0,0,1">Red</button>
-          <button class="btn btn-success" data-color="0,1,0,1">Green</button>
-          <button class="btn btn-primary" data-color="0,0,1,1">Blue</button>
+          <button style="margin: 5px;" class="btn btn-danger" data-color="1,0,0,1">Red</button>
+          <button style="margin: 5px;" class="btn btn-success" data-color="0,1,0,1">Green</button>
+          <button style="margin: 5px;" class="btn btn-primary" data-color="0,0,1,1">Blue</button>
         </div>
 
         <div class="d-flex mt-2">
@@ -424,8 +424,8 @@
          modelBg.skyboxImage="";
       });
        $("#hdr1").click(function () {
-       modelBg.skyboxImage="assets/spruit_sunrise_4k.hdr";
-      // modelBg.skyboxImage="spruit_sunrise_4k.hdr";
+       // modelBg.skyboxImage="assets/spruit_sunrise_4k.hdr";
+       modelBg.skyboxImage="spruit_sunrise_4k.hdr";
          modelBg.style =
           "height: 100vh;width: 100vw; display: block;";
       });
