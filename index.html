@@ -42,7 +42,7 @@
   <body class="border" id="Parentbody">
     <model-viewer
       id="lazy-load"
-      skybox-image=""
+      skybox-image="spruit_sunrise_4k.hdr"
       camera-orbit="-218.1deg 73.88deg auto"
       reveal="auto"
       loading="eager"
@@ -60,29 +60,43 @@
       camera-controls
       shadow-intensity="1"
       
-      style=" height: 100vh;width: 100vw;"
+      style=" height: 100vh;width: 100vw;"> 
+
       
-    >
       <div class="controls">
         <div style="text-size: 24sp">
           Animations:
           <select id="variant"></select>
         </div>
       </div>
-      <button id="pause"><i class="fa fa-pause-circle-o"></i></button>
-      <button id="play" class="btn btn-primary" style="display: none">
+
+     <div class="d-flex" style="width: 0;">
+      <button id="pause"class="btn btn-alert"><i class="fa fa-pause-circle-o"></i></button>
+      <button id="play" class="btn btn-alert" style="display: none">
        <i class="fa fa-play"></i>
       </button>
+
       <button
-        class="btn btn-outline-danger"
+      id="setting1"
+        class="btn btn-alert"
         style="margin: 5px"
         data-toggle="collapse"
         data-target="#demo"
       >
+      <i class="fa fa-sliders"></i>
+      </button>
+      <button
+       id="setting2"
+        class="btn btn-alert"
+        style="margin: 5px"
+        data-toggle="collapse"
+        data-target="#demo2"
+      >
        <i class="fa fa-cog"></i> 
       </button>
+       </div>
 
-      <div style="width: 0px; height:100vh;" id="demo" class="controls3 collapse">
+      <div style=" width: 0dp;" id="demo" class="controls3  collapse ">
         <div>
           <p style="text-size: 8sp">
             Metalness:<span id="metalness-value"></span>
@@ -130,6 +144,9 @@
             value="1"
           />
         </div>
+             </div>
+         
+         <div id="demo2" class="collapse" style="width: 0;">
         <div class="controls2 d-flex mt-2" ,="" id="color-controls">
           <button class="btn btn-danger" data-color="1,0,0,1">Red</button>
           <button class="btn btn-success" data-color="0,1,0,1">Green</button>
@@ -196,10 +213,10 @@
            
         </div>
         <div>
-     <img id="hdr1" class="border" height="100px" width="100px" style="background-color: black"/>
+     <img id="hdr1" class="border" height="50px" width="50px" style="background-color: black; margin-bottom: 8dp;"/>
 
         </div>
-      </div>
+         </div>
     </model-viewer>
 
     <!----  <style>
@@ -367,50 +384,62 @@
       var parentBody = document.getElementById("Parentbody");
       $("#Bg1").click(function () {
         modelBg.style =
-          "height: 600px; width: 100%; display: block; padding: 10px;background:yellow;";
+          "height: 100vh;width: 100vw; display: block; padding: 10px;background:yellow;";
            modelBg.skyboxImage="";
       });
       $("#Bg2").click(function () {
         modelBg.style =
-          "height: 600px; width: 100%; display: block; padding: 10px;background:white;";
+          "height: 100vh;width: 100vw; display: block; padding: 10px;background:white;";
            modelBg.skyboxImage="";
       });
       $("#Bg3").click(function () {
         modelBg.style =
-          "height: 600px; width: 100%; display: block; padding: 10px;background:orange;";
+          "height: 100vh;width: 100vw; display: block; padding: 10px;background:orange;";
            modelBg.skyboxImage="";
       });
       $("#Bg4").click(function () {
         modelBg.style =
-          "height: 600px; width: 100%; display: block; padding: 10px;background:pink;";
+          "height: 100vh;width: 100vw; display: block; padding: 10px;background:pink;";
            modelBg.skyboxImage="";
       });
       $("#Bg5").click(function () {
         modelBg.style =
-          "height: 600px; width: 100%; display: block; padding: 10px;background:blue;";
+          "height: 100vh;width: 100vw; display: block; padding: 10px;background:blue;";
            modelBg.skyboxImage="";
       });
       $("#Bg6").click(function () {
         modelBg.style =
-          "height: 600px; width: 100%; display: block; padding: 10px;background:green;";
+          "height: 100vh;width: 100vw; display: block; padding: 10px;background:green;";
            modelBg.skyboxImage="";
       });
       $("#Bg7").click(function () {
         modelBg.style =
-          "height: 600px; width: 100%; display: block; padding: 10px;background:red;";
+          "height: 100vh;width: 100vw; display: block; padding: 10px;background:red;";
            modelBg.skyboxImage="";
       });
       $("#Bg8").click(function () {
         modelBg.style =
-          "height: 600px; width: 100%; display: block; padding: 10px;background:black;";
+          "height: 100vh;width: 100vw; display: block; padding: 10px;background:black;";
         parentBody.style = "text-color:black";
          modelBg.skyboxImage="";
       });
        $("#hdr1").click(function () {
         modelBg.skyboxImage="assets/spruit_sunrise_4k.hdr";
+      // modelBg.skyboxImage="spruit_sunrise_4k.hdr";
          modelBg.style =
-          "height: 600px; width: 100%; display: block; padding: 10px;background:;";
+          "height: 100vh;width: 100vw; display: block;";
       });
+
+        $('#setting1').click(function(){
+         $('#demo2').addClass('collapse');
+         $('#demo2').removeClass('show');
+          });
+
+        $('#setting2').click(function(){
+         $('#demo').addClass('collapse');
+         $('#demo').removeClass('show');
+          });
+
     </script>
   </body>
 </html>
