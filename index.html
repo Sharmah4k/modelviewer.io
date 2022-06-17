@@ -42,7 +42,7 @@
   <body class="border" id="Parentbody">
     <model-viewer
       id="lazy-load"
-      skybox-image="assets/spruit_sunrise_4k.hdr"
+      skybox-image=""
       camera-orbit="-218.1deg 73.88deg auto"
       reveal="auto"
       loading="eager"
@@ -192,6 +192,13 @@
           />
           <img
             id="Bg8"
+            class="border"
+            height="25px"
+            width="25px"
+            style="background-color: black"
+          />
+           <img
+            id="Bg9"
             class="border"
             height="25px"
             width="25px"
@@ -396,6 +403,9 @@
         modelBg.style =
           "height: 600px; width: 100%; display: block; padding: 10px;background:black;";
         parentBody.style = "text-color:black";
+      });
+       $("#Bg9").click(function () {
+        modelBg.skyboxImage="assets/spruit_sunrise_4k.hdr";
       });
     </script>
   </body>
