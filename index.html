@@ -213,7 +213,11 @@
            
         </div>
         <div>
-     <img id="hdr1" class="border" height="50px" width="50px" style="background-color: black; margin-bottom: 8dp;"/>
+     <img id="hdr1" class="border" height="50px" width="50px" style="background-color: black; margin:2dp"/>
+
+        </div>
+        <div>
+     <img id="hdr2" class="border" height="50px" width="50px" style="background-color: green; margin:2dp"/>
 
         </div>
          </div>
@@ -425,6 +429,14 @@
       });
        $("#hdr1").click(function () {
         modelBg.skyboxImage="assets/spruit_sunrise_4k.hdr";
+       //modelBg.skyboxImage="spruit_sunrise_4k.hdr";
+         modelBg.style =
+          "height: 100vh;width: 100vw; display: block;";
+      });
+
+
+        $("#hdr2").click(function () {
+        modelBg.skyboxImage="assets/zavelstein_4k.hdr";
        //modelBg.skyboxImage="spruit_sunrise_4k.hdr";
          modelBg.style =
           "height: 100vh;width: 100vw; display: block;";
