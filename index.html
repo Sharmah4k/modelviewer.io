@@ -39,7 +39,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-tabledit@1.0.0/jquery.tabledit.min.js"></script>
   </head>
-  <body id="Parentbody">
+  <body id="Parentbody" class="Parentbody">
     <model-viewer
       id="lazy-load"
       skybox-image=""
@@ -53,15 +53,15 @@
       autoplay=""
       enable-pan
       enviornment-image=""
-      src="assets/superCars/lamborgini.glb"
+      src="model/source/Fluttering butterfly.glb"
       preload
       camera-controls
       shadow-intensity="1"
       
       style=" height: 100vh;width: 100vw;"> 
 
-      
-      <div class="controls" style="width: 0;">
+      <div class="d-flex" style="width:0;">
+      <div class="controls"id="animation_toggle" style="width: 180 px;">
         <div style="text-size: 24sp">
           Animations:
           <select id="variant"></select>
@@ -73,6 +73,7 @@
       <button id="play" class="btn btn-outline-alert border" style="display: none; margin:5px;">
        <i class="fa fa-play"></i>
       </button>
+
 
       <button
       id="setting1"
@@ -92,14 +93,29 @@
       >
        <i class="fa fa-cog"></i> 
       </button>
+      <button id="hide_btn" style="margin: 5px;">hide</button>
+     
        </div>
+</div>
+<button class="hide" id="back_btn" style="display: none;margin: 5px;float: right;">back</button>
+<style>
+.hide {
+  display: none;
+}
+    
+.Parentbody:hover + .hide {
+  display: block;
+  color: red;
+}
+</style>
+
 
       <div style=" width: 0;" id="demo" class="controls3  collapse ">
-        <div>
-          <p style="text-size: 8sp">
+        <div class="slidecontainer">
+          <p style="text-size: 12sp;margin: 0;">
             Metalness:<span id="metalness-value"></span>
           </p>
-          <input class="btn btn-outline-primary" 
+          <input 
             id="metalness"
             type="range"
             min="0"
@@ -108,9 +124,9 @@
             value="0.1"
           />
         </div>
-        <div>
-          <p>Roughness:<span id="roughness-value"></span></p>
-          <input class="btn btn-outline-primary"
+        <div class="slidecontainer">
+          <p style="text-size: 12sp;margin: 0;">Roughness:<span id="roughness-value"></span></p>
+          <input 
             id="roughness"
             type="range"
             min="0"
@@ -120,8 +136,8 @@
           />
         </div>
         <div class="slidecontainer">
-          <p>Exposure:<span id="brightness-value"></span></p>
-          <input class="btn btn-outline-primary"
+          <p style="text-size: 12sp;margin: 0;">Exposure:<span id="brightness-value"></span></p>
+          <input 
             id="brightness"
             type="range"
             max="10"
@@ -131,8 +147,8 @@
           />
         </div>
         <div class="slidecontainer">
-          <p>shadow:<span id="shadow-value"></span></p>
-          <input class="btn btn-outline-primary"
+          <p style="text-size: 12sp;margin: 0;">shadow:<span id="shadow-value"></span></p>
+          <input 
             style=""
             id="shadow"
             type="range"
@@ -257,6 +273,7 @@
     <script>
       // customElements.get("model-viewer").modelCacheSize = 10;
       // modelViewer.constructor.modelCacheSize = 10;
+      $(document).ready(function(){
       const modelViewerAnims = document.querySelector("#lazy-load");
       const select = document.querySelector("#variant");
 
@@ -278,7 +295,13 @@
       select.addEventListener("input", (event) => {
         modelViewerAnims.animationName =
           event.target.value === "default" ? null : event.target.value;
+         
       });
+      if(modelViewerAnims.availableAnimations =="default"){
+        $('#pause').hide();
+      }
+
+    });
     </script>
     <script>
       const modelViewerColor = document.querySelector("model-viewer#lazy-load");
@@ -303,6 +326,7 @@
     </script>
 
     <script>
+      $(document).ready(function(){
       const modelViewerParameters = document.querySelector(
         "model-viewer#lazy-load"
       );
@@ -339,9 +363,11 @@
             roughnessDisplay.textContent = event.target.value;
           });
       });
+    });
     </script>
 
     <script>
+      $(document).ready(function(){
       var slider = document.getElementById("brightness");
       var output = document.getElementById("brightness-value");
       var modelV = document.getElementById("lazy-load");
@@ -352,6 +378,7 @@
         var intg = parseFloat(this.value);
         modelV.exposure = intg;
       };
+    });
     </script>
     <script>
       var slider1 = document.getElementById("shadow");
@@ -364,6 +391,7 @@
         var intg1 = parseFloat(this.value);
         modelV1.shadowIntensity = intg1;
       };
+
     </script>
     <script>
       var modelPause = document.getElementById("lazy-load");
@@ -382,6 +410,7 @@
       });
     </script>
     <script>
+      $(document).ready(function(){
       var modelBg = document.getElementById("lazy-load");
       var parentBody = document.getElementById("Parentbody");
       $("#Bg1").click(function () {
@@ -450,6 +479,37 @@
          $('#demo').removeClass('show');
           });
 
+        $('#hide_btn').click(function(){
+          $('#animation_toggle').hide();
+          $('#pause').hide();
+          $('#play').hide();
+          $('#setting1').hide();
+           $('#setting2').hide();
+            $('#hide_btn').hide();
+             $('#demo').addClass('collapse');
+             $('#demo').removeClass('show');
+             $('#demo2').addClass('collapse');
+             $('#demo2').removeClass('show');
+              $('#back_btn').show();
+        });
+
+            $('#back_btn').click(function(){
+          $('#animation_toggle').show();
+          $('#pause').show();
+          $('#play').hide();
+          $('#setting1').show();
+           $('#setting2').show();
+            $('#hide_btn').show();
+             $('#demo').addClass('collapse');
+             $('#demo').removeClass('show');
+             $('#demo2').addClass('collapse');
+             $('#demo2').removeClass('show');
+            $('#back_btn').hide();
+        });
+           
+
+      });
+      
     </script>
   </body>
 </html>
