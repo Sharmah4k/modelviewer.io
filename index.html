@@ -230,9 +230,9 @@
      <img id="hdr1" class="border" height="50px" width="50px" style="background-color: black; margin:2dp"/>
 
         </div>
-        <div>
+        <div class="d-flex">
      <img id="hdr2" class="border" height="50px" width="50px" style="background-color: green; margin:2dp"/>
-<img id="carbg1" class="border" height="50px" width="50px" style="background-image: url('assets/carbackground/thumbnails/3306NewThumb.jpg') ; margin:2dp"/>
+     <img id="carbg1" class="border" height="50px" width="50px" style="background-image: url('assets/carbackground/thumbnails/3306NewThumb.jpg') ; margin:2dp"/>
         </div>
          </div>
     </model-viewer>
@@ -303,6 +303,35 @@
 
     });
     </script>
+
+
+<script type="module">
+
+
+const modelViewer = document.querySelector("model-viewer#lazy-load");
+
+modelViewer.addEventListener("load", () => {
+  const colorArray=[0,1,255];
+  const changeColor = (event) => {
+    var randomNumber=Math.floor(Math.random()*colorArray.length);
+    const material = modelViewer.materialFromPoint(event.clientX, event.clientY);
+    if (material != null) {
+     
+      
+
+      material.pbrMetallicRoughness.
+        setBaseColorFactor([Math.floor(Math.random()*colorArray.length),Math.floor(Math.random()*colorArray.length),Math.floor(Math.random()*colorArray.length)]);
+    }
+
+  };
+  modelViewer.addEventListener("click", changeColor);
+});
+
+</script>
+
+
+
+    
     <script>
       const modelViewerColor = document.querySelector("model-viewer#lazy-load");
 
