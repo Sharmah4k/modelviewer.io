@@ -606,6 +606,7 @@ modelViewer.addEventListener("load", () => {
              $('#back_btn').show();
              modelBg.removeAttribute("enable-pan");
              modelBg.setAttribute("disable-zoom","");
+              modelBg.setAttribute("touch-action","none");
            
 
         });
@@ -684,6 +685,7 @@ modelViewer.addEventListener("load", () => {
   
      $('#disablepan').click(function (){
        modelBg.removeAttribute('enable-pan');
+        modelBg.setAttribute("touch-action","none");
        $('#disablepan').hide();
        $('#pan').show();
      });
