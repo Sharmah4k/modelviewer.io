@@ -666,7 +666,7 @@ modelViewer.addEventListener("load", () => {
 
           $('#pan').click(function (){
        modelBg.setAttribute("enable-pan","");
-       modelBg.removeAttribute("disable-zoom");
+       modelBg.setAttribute("touch-action","pan-y");
        $('#pan').hide();
        $('#disablepan').show();
      });
