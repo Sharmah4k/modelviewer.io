@@ -178,6 +178,19 @@
          
          <div id="demo2" class="collapse" style="width: 0;">
       
+     <div class="slidecontainer d-flex">
+          <p class="btn btn-primary">auto rotate speed:<span id="Arotate-value"></span></p>
+          <input class="btn btn-outline-primary"
+            style=""
+            id="Arotate"
+            type="range"
+            max="200"
+            step="1"
+            min="20"
+            value="30"
+          />
+        </div>
+
         <div class="d-flex mt-2">
           <img
             id="Bg1"
@@ -450,7 +463,18 @@ modelViewer.addEventListener("load", () => {
       };
     </script>
 
+  <script>
+      var slider3 = document.getElementById("Arotate");
+      var output3 = document.getElementById("Arotate-value");
+      var modelV3 = document.getElementById("lazy-load");
+      output3.innerHTML = slider3.value;
 
+      slider3.oninput = function () {
+        output3.innerHTML = this.value;
+        var intg3 = parseInt(this.value);
+        modelV3.setAttribute("rotation-per-second",intg3+"deg");
+      };
+    </script>
 
     <script>
       var modelPause = document.getElementById("lazy-load");
