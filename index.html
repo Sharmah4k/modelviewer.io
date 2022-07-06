@@ -604,7 +604,12 @@ modelViewer.addEventListener("load", () => {
              $('#demo').removeClass('show');
              $('#demo2').addClass('collapse');
              $('#demo2').removeClass('show');
-              $('#back_btn').show();
+             $('#back_btn').show();
+             modelBg.removeAttribute("enable-pan");
+             $('#pan').show();
+             modelBg.setAttribute("disable-zoom","");
+             $('#zoom').show();
+             $('#rotate').show();
 
         });
 
