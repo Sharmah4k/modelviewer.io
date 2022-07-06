@@ -43,13 +43,16 @@
     <model-viewer
       id="lazy-load"
       skybox-image=""
-     bounds="tight"
+      bounds="tight"
       reveal="auto"
       loading="eager"
       alt=""
       camera-orbit="auto"
       min-camera-orbit="auto"
       max-camera-orbit="auto"
+      field-of-view="30deg"
+      max-field-of-view="60deg"
+      min-field-of-view="25deg"
       poster="https://cdn.glitch.global/1c0e7739-76c0-4e19-933f-f75049828a13/predator.jpg?v=1655198012243"
       with-credentials="true"
       animation-name=""
@@ -59,13 +62,16 @@
       src="assets/superCars/lamborgini.glb"
       preload
       camera-controls
+      auto-rotate-delay="500"
+      rotation-per-second="45deg"
+      touch-action="none"
       shadow-intensity="1"
       ar ar-modes="webxr scene-viewer quick-look"
       style=" height: 100vh;width: 100vw;"> 
 
-      <div class="d-flex" style="width:0;">
+      <div class="d-flex" style="width:0; ">
       <div class="controls"id="animation_toggle" style="width: 180 px;">
-        <div style="text-size: 24sp">
+        <div style="text-size: 24sp;background-color:white;" class="btn btn-alert">
           Animations:
           <select id="variant"></select>
         </div>
@@ -76,6 +82,12 @@
       <button id="play" class="btn btn-outline-alert border" style="display: none; margin:5px;background-color:white;">
        <i class="fa fa-play"></i>
       </button>
+      <button id="pan" class="btn btn-alert" style="margin: 5px;background-color:white;"><i class="fa fa-hand-paper-o"></i></button>
+       <button id="disablepan" class="btn btn-alert" style="margin: 5px;background-color:white; display: none;"><i class="fa fa-hand-rock-o"></i></button>
+       <button id="zoom" class="btn  btn-alert" style="margin: 5px;background-color:white;"><i class="fa fa-search-plus"></i></button>
+       <button id="disablezoom" class="btn  btn-alert" style="margin: 5px;background-color:white; display: none;"><i class="fa fa-search-minus"></i></button>
+        <button id="rotate" class="btn btn-alert" style="margin: 5px;background-color:white;"><i class="fa fa-refresh"></i></button>
+        <button id="disablerotate" class="btn btn-alert" style="margin: 5px;background-color:white;display: none;"><i class="fa fa-stop-circle-o"></i></i></button>
 
 
       <button
@@ -100,25 +112,14 @@
      
        </div>
 </div>
-<button class="hide" id="back_btn" style="display: none;margin: 5px;float: right;"><a href="intent://arvr.google.com/scene-viewer/1.0?file=https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Avocado/glTF/Avocado.gltf#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;S.browser_fallback_url=https://developers.google.com/ar;end;">back</a></button>
-<style>
-.hide {
-  display: none;
-}
-    
-.Parentbody:hover + .hide {
-  display: block;
-  color: skyblue;
-}
-</style>
+<button class="hide" id="back_btn" style="display: none;margin: 5px;float: right;">back</button>
 
-
-      <div style=" width: 0;" id="demo" class="controls3  collapse ">
-        <div class="slidecontainer">
-          <p style="text-size: 12sp;margin: 0;">
+    <div style=" width: 0;" id="demo" class="controls3  collapse ">
+        <div class="d-flex">
+          <p class="btn btn-primary" style="text-size: 5dp">
             Metalness:<span id="metalness-value"></span>
           </p>
-          <input 
+          <input class="btn btn-outline-primary" 
             id="metalness"
             type="range"
             min="0"
@@ -127,9 +128,9 @@
             value="0.1"
           />
         </div>
-        <div class="slidecontainer">
-          <p style="text-size: 12sp;margin: 0;">Roughness:<span id="roughness-value"></span></p>
-          <input 
+        <div class="d-flex">
+          <p class="btn btn-primary" >Roughness:<span id="roughness-value"></span></p>
+          <input class="btn btn-outline-primary"
             id="roughness"
             type="range"
             min="0"
@@ -138,9 +139,9 @@
             value="0"
           />
         </div>
-        <div class="slidecontainer">
-          <p style="text-size: 12sp;margin: 0;">Exposure:<span id="brightness-value"></span></p>
-          <input 
+        <div class="slidecontainer d-flex">
+          <p class="btn btn-primary">Exposure:<span id="brightness-value"></span></p>
+          <input class="btn btn-outline-primary"
             id="brightness"
             type="range"
             max="10"
@@ -149,16 +150,28 @@
             value="1"
           />
         </div>
-        <div class="slidecontainer">
-          <p style="text-size: 12sp;margin: 0;">shadow:<span id="shadow-value"></span></p>
-          <input 
+        <div class="slidecontainer d-flex">
+          <p class="btn btn-primary">shadow:<span id="shadow-value"></span></p>
+          <input class="btn btn-outline-primary"
             style=""
             id="shadow"
             type="range"
-            max="10"
-            step="0.01"
+            max="30"
+            step="1"
             min="1"
             value="1"
+          />
+        </div>
+           <div class="slidecontainer d-flex">
+          <p class="btn btn-primary">Fov:<span id="fov-value"></span></p>
+          <input class="btn btn-outline-primary"
+            style=""
+            id="fov"
+            type="range"
+            max="60"
+            step="1"
+            min="20"
+            value="30"
           />
         </div>
              </div>
@@ -358,8 +371,8 @@ modelViewer.addEventListener("load", () => {
         });
     </script> --->
 
+   
     <script>
-      $(document).ready(function(){
       const modelViewerParameters = document.querySelector(
         "model-viewer#lazy-load"
       );
@@ -384,7 +397,7 @@ modelViewer.addEventListener("load", () => {
           .querySelector("#metalness")
           .addEventListener("input", (event) => {
             material.pbrMetallicRoughness.setMetallicFactor(event.target.value);
-            metalnessDisplay.textContent = event.target.value;
+            metalnessDisplay.textContent =parseFloat(event.target.value).toFixed(2);
           });
 
         document
@@ -393,25 +406,22 @@ modelViewer.addEventListener("load", () => {
             material.pbrMetallicRoughness.setRoughnessFactor(
               event.target.value
             );
-            roughnessDisplay.textContent = event.target.value;
+            roughnessDisplay.textContent = parseFloat(event.target.value).toFixed(2);
           });
       });
-    });
     </script>
 
     <script>
-      $(document).ready(function(){
       var slider = document.getElementById("brightness");
       var output = document.getElementById("brightness-value");
       var modelV = document.getElementById("lazy-load");
       output.innerHTML = slider.value;
 
       slider.oninput = function () {
-        output.innerHTML = this.value;
+        output.innerHTML =parseFloat(this.value).toFixed(2);
         var intg = parseFloat(this.value);
         modelV.exposure = intg;
       };
-    });
     </script>
     <script>
       var slider1 = document.getElementById("shadow");
@@ -420,12 +430,28 @@ modelViewer.addEventListener("load", () => {
       output1.innerHTML = slider1.value;
 
       slider1.oninput = function () {
-        output1.innerHTML = this.value;
+        output1.innerHTML = parseFloat(this.value).toFixed(2);
         var intg1 = parseFloat(this.value);
         modelV1.shadowIntensity = intg1;
       };
-
     </script>
+
+
+     <script>
+      var slider2 = document.getElementById("fov");
+      var output2 = document.getElementById("fov-value");
+      var modelV2 = document.getElementById("lazy-load");
+      output2.innerHTML = slider2.value;
+
+      slider2.oninput = function () {
+        output2.innerHTML = this.value;
+        var intg2 = parseInt(this.value);
+        modelV2.setAttribute("field-of-view",intg2+"deg");
+      };
+    </script>
+
+
+
     <script>
       var modelPause = document.getElementById("lazy-load");
       $("#pause").click(function () {
@@ -623,6 +649,40 @@ modelViewer.addEventListener("load", () => {
        modelBg.setAttribute("disable-zoom","");
 
             });
+                    
+          $('#pan').click(function (){
+       modelBg.setAttribute("enable-pan","");
+       $('#pan').hide();
+       $('#disablepan').show();
+     });
+         $('#zoom').click(function (){
+       modelBg.removeAttribute("disable-zoom");
+        $('#zoom').hide();
+       $('#disablezoom').show();
+     });
+             $('#rotate').click(function (){
+       modelBg.setAttribute("auto-rotate","");
+        $('#rotate').hide();
+       $('#disablerotate').show();
+     });
+
+  
+     $('#disablepan').click(function (){
+       modelBg.removeAttribute('enable-pan');
+       $('#disablepan').hide();
+       $('#pan').show();
+     });
+         $('#disablezoom').click(function (){
+       modelBg.setAttribute("disable-zoom","");
+        $('#disablezoom').hide();
+       $('#zoom').show();
+     });
+             $('#disablerotate').click(function (){
+       modelBg.removeAttribute("auto-rotate");
+        $('#disablerotate').hide();
+       $('#rotate').show();
+     });
+           
 
 
       });
