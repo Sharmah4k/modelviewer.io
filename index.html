@@ -233,6 +233,9 @@
         <div class="d-flex">
      <img id="hdr2" class="border" height="50px" width="50px" style="background-color: green; margin:2dp"/>
      <img id="carbg1" class="border" height="50px" width="50px" style="background-image: url('assets/carbackground/thumbnails/3306NewThumb.jpg') ; margin:2dp"/>
+     <img id="carbg2" class="border" height="50px" width="50px" style="background-image: url('assets/carbackground/thumbnails/3306NewThumb.jpg') ; margin:2dp"/>
+     <img id="carbg3" class="border" height="50px" width="50px" style="background-image: url('assets/carbackground/thumbnails/3306NewThumb.jpg') ; margin:2dp"/>
+     <img id="carbg4" class="border" height="50px" width="50px" style="background-image: url('assets/carbackground/thumbnails/3306NewThumb.jpg') ; margin:2dp"/>
         </div>
          </div>
     </model-viewer>
@@ -592,7 +595,35 @@ modelViewer.addEventListener("load", () => {
        modelBg.setAttribute("disable-zoom","");
 
             });
-           
+              $('#carbg2').click(function(){
+              modelBg.style=" height: 100vh;width: 100vw;background-image:url('assets/carbackground/carbg2.jpg');background-size: cover;";
+              modelBg.maxCameraOrbit="auto 80deg auto";
+      modelBg.cameraOrbit="auto 80deg auto";
+       modelBg.minCameraOrbit="auto 80deg auto";
+       modelBg.removeAttribute("enable-pan");
+       modelBg.setAttribute("disable-zoom","");
+
+            });
+                 $('#carbg3').click(function(){
+              modelBg.style=" height: 100vh;width: 100vw;background-image:url('assets/carbackground/carbg3.jpg');background-size: cover;";
+              modelBg.maxCameraOrbit="auto 80deg auto";
+      modelBg.cameraOrbit="auto 80deg auto";
+       modelBg.minCameraOrbit="auto 80deg auto";
+       modelBg.removeAttribute("enable-pan");
+       modelBg.setAttribute("disable-zoom","");
+
+            });
+                    $('#carbg4').click(function(){
+              modelBg.style=" height: 100vh;width: 100vw;background-image:url('assets/carbackground/carbg4.jpg');background-size: cover;";
+              modelBg.maxCameraOrbit="auto 80deg auto";
+      modelBg.cameraOrbit="auto 80deg auto";
+       modelBg.minCameraOrbit="auto 80deg auto";
+       modelBg.removeAttribute("enable-pan");
+       modelBg.setAttribute("disable-zoom","");
+
+            });
+
+
       });
       
     </script>
