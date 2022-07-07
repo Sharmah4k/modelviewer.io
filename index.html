@@ -696,6 +696,7 @@ modelViewer.addEventListener("load", () => {
           $('#pan').click(function (){
        modelBg.setAttribute("enable-pan","");
        modelBg.setAttribute("touch-action","pan-y");
+       modelBg.removeAttribute("disable-zoom");
        $('#pan').hide();
        $('#disablepan').show();
      });
@@ -714,6 +715,9 @@ modelViewer.addEventListener("load", () => {
      $('#disablepan').click(function (){
        modelBg.removeAttribute('enable-pan');
         modelBg.setAttribute("touch-action","none");
+        modelBg.setAttribute("disable-zoom","");
+        $('#zoom').show();
+        $('#disablezoom').hide();
        $('#disablepan').hide();
        $('#pan').show();
      });
