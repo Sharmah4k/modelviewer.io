@@ -507,7 +507,7 @@ modelViewer.addEventListener("load", () => {
            modelBg.removeAttribute("disable-zoom");
            modelBg.removeAttribute("enable-pan");
            modelBg.setAttribute("enable-zoom","");
-         
+
       });
       $("#Bg2").click(function () {
         modelBg.style =
@@ -752,7 +752,6 @@ function setColor() {
 
   var color = ["black", "blue", "brown", "green","yellow","pink","red","orange"];
   x.style.backgroundColor = color[i];
-  x.enviornmentImage=color[i];
   i = (i + 1) % color.length;
   
 }
