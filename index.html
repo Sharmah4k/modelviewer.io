@@ -189,6 +189,8 @@
             value="30"
           />
         </div>
+         <button id="slide-showx"  name="showslide" onclick="runcolor()"><i class="fa fa-film"></i></button>
+          <button id="slide-show-stop"  name="showslide stop" onclick="stopColor()" style="display:none;"><i class="fa fa-desktop"></i></button>
 
         <div class="d-flex mt-2">
           <img
@@ -731,6 +733,34 @@ modelViewer.addEventListener("load", () => {
       });
       
     </script>
+<script>
+   var modelBg = document.getElementById("lazy-load");
+function runcolor(){
+   modelBg.style =
+          "height: 100vh;width: 100vw; display: block; padding: 10px;background:pink;";
+  $('#slide-showx').hide();
+  $('#slide-show-stop').show();
+myInterval = setInterval(setColor, 1000);
+  var i=0;
+function setColor() {
+  let x =document.getElementById("lazy-load");
+
+  var color = ["black", "blue", "brown", "green","yellow","pink","red","orange"];
+  x.style.backgroundColor = color[i];
+  i = (i + 1) % color.length;
+  
+}
+}
+ 
+function stopColor() {
+   $('#slide-showx').show();
+  $('#slide-show-stop').hide();
+  clearInterval(myInterval);
+}
+</script>
+
+
+
     <script>
 const ModelViewerElement = customElements.get('model-viewer');
 ModelViewerElement.dracoDecoderLocation = 'http://example.com/location/of/draco/decoder/files/';
