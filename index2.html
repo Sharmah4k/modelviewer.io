@@ -779,12 +779,12 @@ document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
 
     $_GET[decode(arguments[1])] = decode(arguments[2]);
 });
-   var poster=$_GET["poster"];
- modelV.setAttribute("poster",poster);
+   
   $(document).ready(function () {
      var modelV = document.getElementById("lazy-load");
           var car = $_GET["car"] ;
-           
+           var poster=$_GET["poster"];
+            modelV.setAttribute("poster",poster);
             modelV.setAttribute("src",car);
            
               
