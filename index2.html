@@ -779,14 +779,14 @@ document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
 
     $_GET[decode(arguments[1])] = decode(arguments[2]);
 });
-    var poster=$_GET["poster"];
-    modelV.setAttribute("src",car);
-
+   var poster=$_GET["poster"];
+ modelV.setAttribute("poster",poster);
   $(document).ready(function () {
      var modelV = document.getElementById("lazy-load");
-            var car = $_GET["car"] ;
-         
-            modelV.setAttribute("poster",poster);
+          var car = $_GET["car"] ;
+           
+            modelV.setAttribute("src",car);
+           
               
            });
 </script>
