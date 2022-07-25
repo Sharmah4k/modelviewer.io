@@ -780,7 +780,7 @@ ModelViewerElement.dracoDecoderLocation = 'http://example.com/location/of/draco/
      var modelV = document.getElementById("lazy-load");
             var car = "<?php echo $car; ?>" ;
            
-            modelV.setAttribute("src",car+".glb");
+            modelV.setAttribute("src",car);
               
            });
 </script>
