@@ -1,8 +1,3 @@
-<?php 
-if(isset($_GET['car'])){
-$car=$_GET['car'];
-}
-  ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -769,16 +764,28 @@ function stopColor() {
 }
 </script>
 
+ <script>
+
+var $_GET = {};
+
+document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
+    function decode(s) {
+        return decodeURIComponent(s.split("+").join(" "));
+    }
+
+    $_GET[decode(arguments[1])] = decode(arguments[2]);
+});
+
+document.write($_GET["test"]);
 
 
-    <script>
 const ModelViewerElement = customElements.get('model-viewer');
 ModelViewerElement.dracoDecoderLocation = 'http://example.com/location/of/draco/decoder/files/';
 </script>
 <script >
   $(document).ready(function () {
      var modelV = document.getElementById("lazy-load");
-            var car = "<?php echo $car; ?>" ;
+            var car = $_GET["car"] ;
            
             modelV.setAttribute("src",car);
               
