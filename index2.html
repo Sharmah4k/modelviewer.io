@@ -766,7 +766,11 @@ function stopColor() {
 
  <script>
 
-var $_GET = {};
+const ModelViewerElement = customElements.get('model-viewer');
+ModelViewerElement.dracoDecoderLocation = 'http://example.com/location/of/draco/decoder/files/';
+</script>
+<script >
+  var $_GET = {};
 
 document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
     function decode(s) {
@@ -775,19 +779,13 @@ document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
 
     $_GET[decode(arguments[1])] = decode(arguments[2]);
 });
+    var poster=$_GET["poster"];
+    modelV.setAttribute("src",car);
 
-document.write($_GET["test"]);
-
-
-const ModelViewerElement = customElements.get('model-viewer');
-ModelViewerElement.dracoDecoderLocation = 'http://example.com/location/of/draco/decoder/files/';
-</script>
-<script >
   $(document).ready(function () {
      var modelV = document.getElementById("lazy-load");
             var car = $_GET["car"] ;
-             var poster=$_GET["poster"];
-            modelV.setAttribute("src",car);
+         
             modelV.setAttribute("poster",poster);
               
            });
