@@ -636,9 +636,9 @@ modelViewer.addEventListener("load", () => {
 
         });
 
-            $('#back_btn').click(function(){
-          $('#animation_toggle').show();
-          $('#pause').show();
+              $('#back_btn').click(function(){
+          $('#animation_toggle').hide();
+          $('#pause').hide();
           $('#play').hide();
           $('#setting1').show();
            $('#setting2').show();
@@ -651,8 +651,7 @@ modelViewer.addEventListener("load", () => {
                 $('#pan').show();
             $('#zoom').show();
              $('#rotate').show();
-        });
-            $('#carbg1').click(function(){
+        });            $('#carbg1').click(function(){
               modelBg.style=" height: 100vh;width: 100vw;background-image:url('assets/carbackground/3306New.jpg');background-size: cover;";
               modelBg.maxCameraOrbit="auto 80deg auto";
       modelBg.cameraOrbit="auto 80deg auto";
